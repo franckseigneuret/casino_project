@@ -9,12 +9,13 @@ const Img = styled.img`
   }
 `
 
-const Dice = ({ value }) => {
+const Dice = ({ value, position, handleSelect }) => {
 
   const [blocked, setBlocked] = useState(false)
 
   const selectMe = () => {
     setBlocked(!blocked) // on inverse son statut blocked
+    handleSelect({ position, blocked }) // on utilise la fonction envoyée dans les props pour informer le parent sur son nouvel état
   }
 
   return (
