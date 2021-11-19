@@ -1,5 +1,6 @@
 import './App.css';
-import Game from './yams/Game';
+
+import YamsGame from './yams/YamsGame';
 
 const handleClick = async () => {
   let body = ''
@@ -22,7 +23,7 @@ function App() {
           CLICK THIS to check fetch with DB (cf network XHR & console)
         </p>
 
-        <Game />
+        <YamsGame />
       </header>
     </div>
   );

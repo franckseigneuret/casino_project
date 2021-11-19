@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Row, Button } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 import Dice from './Dice'
 
@@ -9,8 +9,7 @@ const initialDicesClickable = [true, true, true, true, true] // au dÃ©but les dÃ
 
 const shuffleBetween1and6 = () => Math.ceil(Math.random() * 6)
 
-
-function Game(props) {
+function FiveDices() {
 
   const [actualDicesValues, setActualDicesValues] = useState(initialDicesValues)
   const [dicesClickable, setDicesClickable] = useState(initialDicesClickable)
@@ -41,19 +40,12 @@ function Game(props) {
 
 
   return (
-    <Container>
-      <Row>
-        <div className="col col-4 text-center">
-          <Button color="primary" onClick={() => changeDiceValue()}>Lancer</Button>
-          <hr />
-          {dices}
-        </div>
-        <div className="col col-8">
-        </div>
-      </Row>
-
-    </Container>
+    <>
+      <Button color="primary" onClick={() => changeDiceValue()}>Lancer</Button>
+      <hr />
+      {dices}
+    </>
   )
 }
 
-export default Game
+export default FiveDices
