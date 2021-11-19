@@ -1,13 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Cell from "./ScoreTableCell";
 
-// const cases = [
-//   'as', 'two', 'three', 'four', 'five', 'six', 'subTotal', 'bonus', 'total1',
-//   'fullHouse', 'smallStraight', 'largeStraight', 'prime', 'threeOfAKind', 'fourOfAKind', 'yahtzee', 'chance', 'min', 'max', 'total2',
-//   'total'
-// ]
-const cases = {
+const scoreCategories = {
   'as': '', 'two': '', 'three': '', 'four': '', 'five': '', 'six': '',
   'subTotal': '',
   'bonus': '',
@@ -18,12 +13,13 @@ const cases = {
   'total': '',
 }
 const ScoreTable = () => {
+  const [score, setScore] = useState(scoreCategories)
 
-  const handleClick = async ({ name, value }) => {
-    // ...
+  const handleClick = ({ name, value }) => {
+    console.log('name = ', name, ' value= ', value);
   }
 
-  const cells = Object.keys(cases).map((item, i) => {
+  const cells = Object.keys(scoreCategories).map((item, i) => {
     return <div key={i} style={{ display: 'flex' }}>
       <Cell value={item} />
       <Cell
