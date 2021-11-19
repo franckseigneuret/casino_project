@@ -1,6 +1,16 @@
-import './App.css';
+import React from 'react'
 
-import YamsGame from './yams/YamsGame';
+import YamsGame from './yams/YamsGame'
+import './App.css'
+
+import { Provider } from 'react-redux'
+import { createStore, combineReducers } from 'redux'
+import dices from './reducers/dices.reducer'
+const store = createStore(
+  combineReducers({ dices }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() // pour lire le store dans extension chrome
+);
+
 
 const handleClick = async () => {
   let body = ''
@@ -23,7 +33,9 @@ function App() {
           CLICK THIS to check fetch with DB (cf network XHR & console)
         </p>
 
-        <YamsGame />
+        <Provider store={store}>
+          <YamsGame />
+        </Provider>
       </header>
     </div>
   );

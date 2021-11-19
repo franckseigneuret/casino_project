@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+
 import { Button } from 'reactstrap'
 
 import Dice from './Dice'
@@ -9,7 +11,7 @@ const initialDicesClickable = [true, true, true, true, true] // au début les d�
 
 const shuffleBetween1and6 = () => Math.ceil(Math.random() * 6)
 
-function FiveDices() {
+function FiveDices({ memoStoreDices }) {
 
   const [actualDicesValues, setActualDicesValues] = useState(initialDicesValues)
   const [dicesClickable, setDicesClickable] = useState(initialDicesClickable)
@@ -24,6 +26,7 @@ function FiveDices() {
       tempValues.push(value)
     }
     setActualDicesValues(tempValues) //on met à jour le tableau des valeurs en cours
+    memoStoreDices(tempValues)
   }
 
 
@@ -48,4 +51,14 @@ function FiveDices() {
   )
 }
 
-export default FiveDices
+const mapDispatchToProps = (dispatch) => {
+  return {
+    memoStoreDices: (dicesValues) => {
+      dispatch({ type: 'memoDices', dicesValues: dicesValues })
+    }
+  }
+}
+export default connect(
+  null,
+  mapDispatchToProps
+)(FiveDices)
