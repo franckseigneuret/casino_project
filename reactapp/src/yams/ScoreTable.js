@@ -18,25 +18,38 @@ const mapNameValue = {
   'as': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6,
 }
 
-
-const calculScore = ({ name, dicesList }) => {
-  switch (name) {
-    case 'as':
-    case 'two':
-    case 'three':
-    case 'four':
-    case 'five':
-    case 'six':
-      return mapNameValue[name] * dicesList.filter(item => item === mapNameValue[name]).length
-
-    default:
-      return 0
-  }
+const sumDices = (dicesList) => {
+  return dicesList.reduce((a, b) => a + b, 0)
 }
+
 
 const ScoreTable = ({ dicesList }) => {
   const [score, setScore] = useState(scoreCategories)
 
+  const calculScore = ({ name, dicesList }) => {
+    console.log(score);
+    let sum = 0
+    
+    switch (name) {
+      case 'as':
+      case 'two':
+      case 'three':
+      case 'four':
+      case 'five':
+      case 'six':
+        return mapNameValue[name] * dicesList.filter(item => item === mapNameValue[name]).length
+
+      case 'min':
+        sum = sumDices(dicesList)
+        return score.max === '' || sum < score.max ? sum : 0
+      case 'max':
+        sum = sumDices(dicesList)
+        return score.min === '' || score.min < sum ? sum : 0
+
+      default:
+        return 0
+    }
+  }
   const handleClick = ({ name }) => {
     const newCategoryScore = calculScore({ name, dicesList })
 

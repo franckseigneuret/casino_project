@@ -3,7 +3,7 @@
 - [x] clic "lancer" => les valeurs des dés sont enregistrées dans le redux-store
 - [x] clic cellule score => selon le type de cellule
   - [x] : compter le nb d'occurence et muliplier par la valeur (trois dés "4" => 12)
-  - [] : max - min => addition + condition max > min
+  - [x] : max - min => addition + condition max > min
   - [] : subTotal si as-...-six renseignés
   - [] : bonus + total1 : si subTotal renseigné
   - [] : analyse des autres cellules (fullHouse, smallStraight, largeStraight, threeOfAKind, fourOfAKind, yahtzee, chance)
