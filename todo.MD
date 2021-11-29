@@ -9,11 +9,12 @@
   - [ ] : analyse des autres cellules (fullHouse, smallStraight, largeStraight, threeOfAKind, fourOfAKind, yahtzee, chance)
   - [ ] : total2 : si les cellules concernées sont renseignées
 - [ ] : bloquer les clics sur les cases remplies
+- [ ] : bloquer 3 lancés de dés, au delà, le joueur doit choisir une case de score à remplir
 - [ ] : enregistrer sur monoDB
 - [ ] : ajout bouton FR/EN sur le jeu (fullHouse = full, threeOfAKind = brelan...)
 - [ ] : ajout readme.MD => règles du yams (+ vidéo)
-- [ ] :
-- [ ] :
+- [ ] : ajout tag github
+- [ ] : traduction
 - [ ] :
 - [ ] :
 - [ ] :

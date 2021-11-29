@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 
 import Cell from "./ScoreTableCell";
@@ -25,11 +25,25 @@ const sumDices = (dicesList) => {
 
 const ScoreTable = ({ dicesList }) => {
   const [score, setScore] = useState(scoreCategories)
+  const [unitDicesScore, setUnitDicesScore] = useState({})
+
+  // if scores for each die are set, then calculate subTotal
+  useEffect(() => {
+    const diceScores = Object.values(unitDicesScore)
+    if (diceScores.length === 6) {
+      let subTotalScore = 0
+      diceScores.map(diceScore => subTotalScore += diceScore)
+
+      setScore({
+        ...score,
+        subTotal: subTotalScore
+      })
+    }
+  }, [unitDicesScore]);
 
   const calculScore = ({ name, dicesList }) => {
-    console.log(score);
-    let sum = 0
-    
+    let diceScore = 0
+
     switch (name) {
       case 'as':
       case 'two':
@@ -37,26 +51,33 @@ const ScoreTable = ({ dicesList }) => {
       case 'four':
       case 'five':
       case 'six':
-        return mapNameValue[name] * dicesList.filter(item => item === mapNameValue[name]).length
+        diceScore = mapNameValue[name] * dicesList.filter(item => item === mapNameValue[name]).length
+        setUnitDicesScore({ ...unitDicesScore, [name]: diceScore })
+        return diceScore
 
       case 'min':
-        sum = sumDices(dicesList)
-        return score.max === '' || sum < score.max ? sum : 0
+        diceScore = sumDices(dicesList)
+        return score.max === '' || diceScore < score.max ? diceScore : 0
       case 'max':
-        sum = sumDices(dicesList)
-        return score.min === '' || score.min < sum ? sum : 0
+        diceScore = sumDices(dicesList)
+        return score.min === '' || score.min < diceScore ? diceScore : 0
 
       default:
-        return 0
+        return ''
     }
   }
-  const handleClick = ({ name }) => {
-    const newCategoryScore = calculScore({ name, dicesList })
 
-    setScore({
-      ...score,
-      [name]: newCategoryScore
-    })
+  const handleClick = ({ name }) => {
+    if (dicesList.length > 0) {
+
+      const newCategoryScore = calculScore({ name, dicesList })
+
+      setScore({
+        ...score,
+        [name]: newCategoryScore
+      })
+
+    }
   }
 
   const cells = Object.keys(scoreCategories).map((item, i) => {
