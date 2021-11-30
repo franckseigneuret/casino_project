@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const Bloc = styled.div`
   flex: 1;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
 
   background: ${props => props.color ? "#e0e0e0" : "#F39148"};
