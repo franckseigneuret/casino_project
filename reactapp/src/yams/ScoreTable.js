@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux'
 
+import {
+  sumDices,
+  getQtyEachDie,
+  getDieWithXTimes,
+} from './Calcul'
+
 import Cell from "./ScoreTableCell";
 
 const scoreCategories = {
@@ -17,11 +23,6 @@ const scoreCategories = {
 const mapNameValue = {
   'as': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6,
 }
-
-const sumDices = (dicesList) => {
-  return dicesList.reduce((a, b) => a + b, 0)
-}
-
 
 const ScoreTable = ({ dicesList }) => {
   const [score, setScore] = useState(scoreCategories)
@@ -45,6 +46,7 @@ const ScoreTable = ({ dicesList }) => {
 
   const calculScore = ({ name, dicesList }) => {
     let diceScore = 0
+    let qtyEachDieObj = {}
 
     switch (name) {
       case 'as':
@@ -63,6 +65,12 @@ const ScoreTable = ({ dicesList }) => {
       case 'max':
         diceScore = sumDices(dicesList)
         return score.min === '' || score.min < diceScore ? diceScore : 0
+      case 'threeOfAKind':
+        qtyEachDieObj = getQtyEachDie(dicesList)
+        return getDieWithXTimes(qtyEachDieObj, 3) ? 30 + sumDices(dicesList) : 0
+      case 'fourOfAKind':
+        qtyEachDieObj = getQtyEachDie(dicesList)
+        return getDieWithXTimes(qtyEachDieObj, 4) ? 40 + sumDices(dicesList) : 0
 
       default:
         return ''

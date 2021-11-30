@@ -19,8 +19,8 @@ var gridSchema = mongoose.Schema({
   smallStraight: Number,  // petite suite (1-2-3-4, 2-3-4-5, or 3-4-5-6)          30
   largeStraight: Number,  // grande suite (1-2-3-4-5 or 2-3-4-5-6)                40
 
-  threeOfAKind: Number,   // brelan (3 dés identiques)                            Somme de tous les dés
-  fourOfAKind: Number,    // carré (4 dés identiques)                             Somme de tous les dés
+  threeOfAKind: Number,   // brelan (3 dés identiques)                            30 + Somme de tous les dés
+  fourOfAKind: Number,    // carré (4 dés identiques)                             40 + Somme de tous les dés
   yahtzee: Number,        // 5 dés identiques                                     50
   chance: Number,         //                                                      Somme de tous les dés
   min: Number,            // min < max                                            Somme de tous les dés
