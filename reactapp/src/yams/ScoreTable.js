@@ -27,7 +27,7 @@ const ScoreTable = ({ dicesList }) => {
   const [score, setScore] = useState(scoreCategories)
   const [unitDicesScore, setUnitDicesScore] = useState({})
 
-  // if scores for each die are set, then calculate subTotal
+  // if scores for each die are set, then calculate subTotal, bonus and total1
   useEffect(() => {
     const diceScores = Object.values(unitDicesScore)
     if (diceScores.length === 6) {
@@ -36,7 +36,9 @@ const ScoreTable = ({ dicesList }) => {
 
       setScore({
         ...score,
-        subTotal: subTotalScore
+        subTotal: subTotalScore,
+        bonus: subTotalScore > 62 ? 35 : 0,
+        total1: subTotalScore > 62 ? subTotalScore + 35 : subTotalScore,
       })
     }
   }, [unitDicesScore]);

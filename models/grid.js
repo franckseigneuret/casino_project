@@ -12,8 +12,8 @@ var gridSchema = mongoose.Schema({
   six: Number,
   subTotal: Number,       // as + two + three + four + five + six
 
-  bonus: Number,          //                                                      + 35 si subTotal >= 63
-  total1: Number,         //                                                      subTotal + bonus
+  bonus: Number,          // + 35 si subTotal >= 63
+  total1: Number,         // subTotal + bonus
 
   fullHouse: Number,      // full (3 dés identiques + 2 dés identiques)
   smallStraight: Number,  // petite suite (1-2-3-4, 2-3-4-5, or 3-4-5-6)          30
